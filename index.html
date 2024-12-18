@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Confession of Love</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&display=swap');
+
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            background: linear-gradient(135deg, #f8cdda, #1d2b64);
+            font-family: 'Playfair Display', serif;
+            color: #fff;
+            overflow: hidden;
+            position: relative;
+        }
+        h1 {
+            font-size: 48px;
+            margin-bottom: 20px;
+            text-align: center;
+            animation: fadeIn 2s ease-in-out;
+            color: #ff6f61; 
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        .confession {
+            font-size: 24px;
+            text-align: center;
+            margin: 20px;
+            opacity: 0;
+            animation: slideIn 2s forwards;
+            color: #ffe6e6; 
+        }
+        @keyframes slideIn {
+            from { transform: translateY(50px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+        .heart {
+            font-size: 30px;
+            position: absolute;
+            animation: float 4s linear forwards;
+        }
+        @keyframes float {
+            0% {
+                transform: translateY(0);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-100vh);
+                opacity: 0;
+            }
+        }
+        .button {
+            background-color: #ff7f50;
+            border: none;
+            color: white;
+            padding: 15px 30px;
+            font-size: 20px;
+            margin: 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            font-family: 'Playfair Display', serif; 
+        }
+        .button:hover {
+            background-color: #ff4500; 
+        }
+        .response {
+            font-size: 24px;
+            margin-top: 20px;
+            opacity: 0;
+            animation: fadeIn 1s forwards;
+        }
+    </style>
+</head>
+<body>
+    <h1>Confession Time!</h1>
+    <div class="confession">
+        <p>I just wanted to say... ❤️</p>
+        <p>You make my world brighter! 🌟</p>
+        <p>Every moment with you is a treasure! 💖</p>
+    </div>
+    <div id="heart-container"></div>
+
+    <button class="button" id="loveButton">I feel the same!</button>
+    <button class="button" id="friendButton">Let’s be friends!</button>
+    <div class="response" id="responseMessage"></div>
+
+    <audio id="backgroundSong" autoplay loop>
+        <source src="die_for_you.mp3" type="audio/mpeg">
+        Your browser does not support the audio tag.
+    </audio>
+
+    <script>
+        const heartContainer = document.getElementById('heart-container');
+
+        function createHeart() {
+            const heart = document.createElement('span');
+            heart.textContent = '❤️';
+            heart.className = 'heart';
+            heart.style.left = Math.random() * 100 + 'vw';
+            heart.style.fontSize = Math.random() * 20 + 15 + 'px';
+            heartContainer.appendChild(heart);
+
+            
+            heart.style.animationDuration = (Math.random() * 2 + 3) + 's';
+
+           
+            heart.addEventListener('animationend', () => {
+                heart.remove();
+            });
+        }
+
+        
+        setInterval(createHeart, 500);
+       
+        document.getElementById('loveButton').addEventListener('click', () => {
+            displayResponse(" You just made me the happiest person ❤️");
+        });
+
+        document.getElementById('friendButton').addEventListener('click', () => {
+            displayResponse(" okay ort ey heh jg pm tt hov jg 😊");
+        });
+
+        function displayResponse(message) {
+            const responseMessage = document.getElementById('responseMessage');
+            responseMessage.textContent = message;
+            responseMessage.style.opacity = 1;
+        }
+    </script>
+</body>
+</html>
